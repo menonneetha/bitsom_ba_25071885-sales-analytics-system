@@ -10,18 +10,18 @@
 - ✅ Exports cleaned data to CSV
 
 ## 📁 Repository Structure
-sales-analytics-system/
-├── main.py # Main execution script
-├── requirements.txt # Dependencies
-├── README.md # This file
-├── data/ # Input data
-│ └── sales_data.txt # Provided sales data (~80 records)
-├── utils/ # Modular utilities
-│ ├── file_handler.py # File reading & parsing
-│ ├── data_processor.py # Data cleaning & analysis
-│ └── api_handler.py # External API integration
-└── output/ # Generated reports
-└── cleaned_sales.csv # Generated after running
+sales-analytics-system/  
+├── main.py # Main execution script  
+├── requirements.txt # Dependencies  
+├── README.md # This file  
+├── data/ # Input data  
+│ └── sales_data.txt # Provided sales data (~80 records)  
+├── utils/ # Modular utilities  
+│ ├── file_handler.py # File reading & parsing  
+│ ├── data_processor.py # Data cleaning & analysis  
+│ └── api_handler.py # External API integration  
+└── output/ # Generated reports  
+└── cleaned_sales.csv # Generated after running  
 
 
 ## 🚀 Quick Start
