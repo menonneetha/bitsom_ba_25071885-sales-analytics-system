@@ -21,19 +21,19 @@ def main():
     print(f"Invalid records removed: {invalid_count}")
     print(f"Valid records after cleaning: {len(valid_transactions)}")
     
-    # QUESTION 2 PART 1: Enhanced analysis (KEEPS original Question 2 output)
+    # QUESTION 2 PART 1: Enhanced analysis (ORIGINAL Business Report)
     print("\n" + "="*50)
     print("QUESTION 2 PART 1 - ENHANCED ANALYSIS")
     print("="*50)
     
-    # API Integration
+    # API Integration (Question 1 - Legacy)
     api_handler = ProductAPIHandler()
     enriched_data = api_handler.add_api_info(valid_transactions)
     
-    # Question 2 BUSINESS REPORT
+    # ORIGINAL Question 2 BUSINESS REPORT (exactly preserved)
     analyze_sales(enriched_data)
     
-    # NEW Question 3 PART 2: Advanced Data Processing (ADDED)
+    # QUESTION 3 PART 2: Advanced Data Processing
     print("\n" + "="*60)
     print("QUESTION 3 PART 2 - ADVANCED DATA PROCESSING")
     print("="*60)
@@ -70,13 +70,41 @@ def main():
     for product, qty, revenue in low_products[:3]:
         print(f"   {product}: {qty} units (₹{revenue:,.0f})")
     
+    # QUESTION 4 PART 3: NEW DummyJSON API Integration (ADDED)
+    print("\n" + "="*60)
+    print("QUESTION 4 PART 3 - DUMMYJSON API INTEGRATION")
+    print("="*60)
+    
+    # Fetch fresh API data
+    api_handler.fetch_all_products()
+    
+    # Enrich with NEW DummyJSON API data
+    enriched_with_api = api_handler.enrich_sales_data(valid_transactions)
+    
+    print(f"\n🎉 API SUMMARY:")
+    print(f"   Products fetched from API: {len(api_handler.product_mapping)}")
+    print(f"   Transactions enriched: {len(enriched_with_api)}")
+    print(f"   Successful API matches: {sum(1 for t in enriched_with_api if t['API_Match'])}")
+    print(f"   Enriched file saved: data/enriched_sales_data.txt")
+    
     # Save comprehensive report
     os.makedirs('output', exist_ok=True)
     with open('output/complete_analysis.csv', 'w', newline='') as f:
         writer = csv.DictWriter(f, fieldnames=enriched_data[0].keys())
         writer.writeheader()
         writer.writerows(enriched_data)
-    print("\n✅ Saved to output/complete_analysis.csv")
+    
+    print("\n" + "="*60)
+    print("🎉 ALL QUESTIONS COMPLETE!")
+    print("="*60)
+    print("✅ Question 1: File handling & basic cleaning")
+    print("✅ Question 2: Validation & Business Report") 
+    print("✅ Question 3: Advanced analytics")
+    print("✅ Question 4: DummyJSON API integration")
+    print("\n📁 Files generated:")
+    print("   output/complete_analysis.csv")
+    print("   data/enriched_sales_data.txt")
+    print("   output/product_cache.json")
 
 if __name__ == "__main__":
     main()
