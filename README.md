@@ -37,9 +37,9 @@ python3 main.py
 
 🖥️ Expected Interactive Output
 
-=================================================  
-         SALES ANALYTICS SYSTEM. 
-=================================================  
+========================================  
+         SALES ANALYTICS SYSTEM  
+========================================  
 
 - [1/10] Reading sales data... ✓ 80 transactions
 - [2/10] Parsing and cleaning data... ✓ 80 records
@@ -51,10 +51,10 @@ Do you want to filter data? (y/n): n
 
 📊 Generated Files (Auto-created by program)
 
-output/sales_report.txt           # Question 5: 8-section report  
-data/enriched_sales_data.txt      # Question 4: API-enriched data   
-output/complete_analysis.csv      # All transaction data  
-output/product_cache.json         # API cache  
+- output/sales_report.txt           # Question 5: 8-section report  
+- data/enriched_sales_data.txt      # Question 4: API-enriched data  
+- output/complete_analysis.csv      # All transaction data  
+- output/product_cache.json         # API cache  
 
 🔍 Key Features Demonstrated
 
@@ -97,16 +97,18 @@ Question 6: Main Application
 - Complete error handling
 - Professional progress indicators
 
-📈 Sample Results  
+## 📈 Sample Results
 
-Metric			Value  
-Total Records		80  
-Valid Records		70  
-Invalid Records		10  
-Total Revenue		₹3,527,808  
-Top Region		North (37.45%)  
-Top Product		Laptop (45 units)  
-API Matches		45/70 (64%)  
+| Metric            | Value          |
+|-------------------|----------------|
+| Total Records     | 80             |
+| Valid Records     | 70             |
+| Invalid Records   | 10             |
+| Total Revenue     | ₹3,527,808     |
+| Top Region        | North (37.45%) |
+| Top Product       | Laptop (45 units) |
+| API Matches       | 45/70 (64%)    |
+
 
 🛠️ Technologies
 - Python 3.8+
@@ -122,12 +124,13 @@ API Matches		45/70 (64%)
 - Q5: 8-section formatted report (15 pts)
 - Q6: Interactive 10-step workflow (10 pts)
 
-📝 Usage Examples
-No filtering:
-python3 main.py
-### Answer 'n' to filter prompt
-
-Region filter:
+📝 Usage Examples  
+No filtering:  
 python3 main.py  
-### Answer 'y' → '1' → 'North'
+Answer 'n' to filter prompt  
+
+Region filter:  
+python3 main.py  
+Answer 'y' → '1' → 'North'  
+
 
