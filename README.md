@@ -12,18 +12,18 @@
 ✅ **Question 6**: Interactive 10-step main application workflow  
 
 ## 📁 Repository Structure
-sales-analytics-system/ 
-├── README.md # Documentation 
-├── main.py # Interactive main application 
-├── requirements.txt # Dependencies 
-├── data/ 
-│ └── sales_data.txt # Input dataset (~80 records) 
-├── utils/ # Modular utilities 
-│ ├── file_handler.py # File reading & encoding 
-│ ├── data_processor.py # All analysis functions 
-│ └── api_handler.py # DummyJSON API integration 
-├── output/ # Generated reports (gitignored) 
-└── .gitignore # Excludes generated files 
+sales-analytics-system/  
+├── README.md # Documentation  
+├── main.py # Interactive main application  
+├── requirements.txt # Dependencies  
+├── data/  
+│ └── sales_data.txt # Input dataset (~80 records)  
+├── utils/ # Modular utilities  
+│ ├── file_handler.py # File reading & encoding  
+│ ├── data_processor.py # All analysis functions  
+│ └── api_handler.py # DummyJSON API integration  
+├── output/ # Generated reports (gitignored)  
+└── .gitignore # Excludes generated files  
 
 
 ## 🚀 Quick Start (Mac/Linux)
