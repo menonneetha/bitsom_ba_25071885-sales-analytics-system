@@ -10,111 +10,115 @@ from utils.data_processor import (
 from utils.api_handler import ProductAPIHandler
 
 def main():
-    print("=== Sales Analytics System ===\n")
-    
-    # QUESTION 1: Original functionality
-    records = read_sales_data('sales_data.txt')
-    all_transactions = parse_transactions(records)
-    valid_transactions, invalid_count, _ = validate_and_filter(all_transactions)
-    
-    print(f"Total records parsed: {len(records)}")
-    print(f"Invalid records removed: {invalid_count}")
-    print(f"Valid records after cleaning: {len(valid_transactions)}")
-    
-    # QUESTION 2 PART 1: Enhanced analysis (ORIGINAL Business Report)
-    print("\n" + "="*50)
-    print("QUESTION 2 PART 1 - ENHANCED ANALYSIS")
-    print("="*50)
-    
-    # API Integration (Question 1 - Legacy)
-    api_handler = ProductAPIHandler()
-    enriched_data = api_handler.add_api_info(valid_transactions)
-    
-    # ORIGINAL Question 2 BUSINESS REPORT (exactly preserved)
-    analyze_sales(enriched_data)
-    
-    # QUESTION 3 PART 2: Advanced Data Processing
-    print("\n" + "="*60)
-    print("QUESTION 3 PART 2 - ADVANCED DATA PROCESSING")
-    print("="*60)
-    
-    # 2.1a Total Revenue
-    total_rev = calculate_total_revenue(valid_transactions)
-    print(f"💰 2.1a Total Revenue: ₹{total_rev:,.2f}")
-    
-    # 2.1b Region-wise Sales
-    region_sales = region_wise_sales(valid_transactions)
-    print("\n📊 2.1b Region-wise Sales (Top 3):")
-    for region, stats in list(region_sales.items())[:3]:
-        print(f"   {region}: ₹{stats['total_sales']:,.0f} ({stats['percentage']}%, {stats['transaction_count']} txns)")
-    
-    # 2.1c Top Selling Products
-    top_products = top_selling_products(valid_transactions, n=5)
-    print("\n🏆 2.1c Top 5 Products (by quantity):")
-    for product, qty, revenue in top_products:
-        print(f"   {product}: {qty} units (₹{revenue:,.0f})")
-    
-    # 2.1d Customer Analysis (Top 3)
-    customers = customer_analysis(valid_transactions)
-    print("\n👥 2.1d Top 3 Customers:")
-    for customer, stats in list(customers.items())[:3]:
-        print(f"   {customer}: ₹{stats['total_spent']:,.0f} ({stats['purchase_count']} orders, avg ₹{stats['avg_order_value']:,.0f})")
-    
-    # 2.2b Peak Sales Day
-    peak_day = find_peak_sales_day(valid_transactions)
-    print(f"\n📅 2.2b Peak Sales Day: {peak_day[0]} (₹{peak_day[1]:,.0f}, {peak_day[2]} transactions)")
-    
-    # 2.3a Low Performing Products
-    low_products = low_performing_products(valid_transactions, threshold=10)
-    print(f"\n📉 2.3a Low Performing Products (<10 units): {len(low_products)} products")
-    for product, qty, revenue in low_products[:3]:
-        print(f"   {product}: {qty} units (₹{revenue:,.0f})")
-    
-    # QUESTION 4 PART 3: DummyJSON API Integration
-    print("\n" + "="*60)
-    print("QUESTION 4 PART 3 - DUMMYJSON API INTEGRATION")
-    print("="*60)
-    
-    # Fetch fresh API data
-    api_handler.fetch_all_products()
-    
-    # Enrich with NEW DummyJSON API data
-    enriched_with_api = api_handler.enrich_sales_data(valid_transactions)
-    
-    print(f"\n🎉 API SUMMARY:")
-    print(f"   Products fetched from API: {len(api_handler.product_mapping)}")
-    print(f"   Transactions enriched: {len(enriched_with_api)}")
-    print(f"   Successful API matches: {sum(1 for t in enriched_with_api if t['API_Match'])}")
-    print(f"   Enriched file saved: data/enriched_sales_data.txt")
-    
-    # QUESTION 5 PART 4: Report Generation (NEW)
-    print("\n" + "="*60)
-    print("QUESTION 5 PART 4 - COMPREHENSIVE REPORT GENERATION")
-    print("="*60)
-    
-    generate_sales_report(valid_transactions, enriched_with_api)
-    print("\n📄 Comprehensive report saved: output/sales_report.txt")
-    
-    # Save comprehensive report
-    os.makedirs('output', exist_ok=True)
-    with open('output/complete_analysis.csv', 'w', newline='') as f:
-        writer = csv.DictWriter(f, fieldnames=enriched_data[0].keys())
-        writer.writeheader()
-        writer.writerows(enriched_data)
-    
-    print("\n" + "="*60)
-    print("🎉 ALL QUESTIONS COMPLETE!")
-    print("="*60)
-    print("✅ Question 1: File handling & basic cleaning")
-    print("✅ Question 2: Validation & Business Report") 
-    print("✅ Question 3: Advanced analytics")
-    print("✅ Question 4: DummyJSON API integration")
-    print("✅ Question 5: Comprehensive report generation")
-    print("\n📁 Files generated:")
-    print("   output/complete_analysis.csv")
-    print("   data/enriched_sales_data.txt")
-    print("   output/sales_report.txt") 
-    print("   output/product_cache.json")
+    """
+    Question 6 Part 5: Main Interactive Application
+    Complete 10-step workflow with user interaction
+    """
+    try:
+        print("=" * 55)
+        print("         SALES ANALYTICS SYSTEM")
+        print("=" * 55)
+        print()
+        
+        # [1/10] Reading sales data
+        print("[1/10] Reading sales data...")
+        records = read_sales_data('sales_data.txt')
+        print(f"   ✓ Successfully read {len(records)} transactions")
+        print()
+        
+        # [2/10] Parsing and cleaning data
+        print("[2/10] Parsing and cleaning data...")
+        all_transactions = parse_transactions(records)
+        print(f"   ✓ Parsed {len(all_transactions)} records")
+        print()
+        
+        # [3/10] Filter Options (USER INTERACTION)
+        print("[3/10] Filter Options Available:")
+        regions = list(set(t['Region'] for t in all_transactions if t['Region']))
+        amounts = [t['Quantity'] * t['UnitPrice'] for t in all_transactions]
+        print(f"   Regions: {', '.join(regions)}")
+        print(f"   Amount Range: ₹{min(amounts):,.0f} - ₹{max(amounts):,.0f}")
+        print()
+        
+        filter_choice = input("Do you want to filter data? (y/n): ").strip().lower()
+        valid_transactions = all_transactions
+        
+        if filter_choice == 'y':
+            print("\nFilter Options:")
+            print("1. Region")
+            print("2. Amount Range")
+            filter_type = input("Choose filter (1 or 2): ").strip()
+            
+            if filter_type == '1':
+                region_filter = input("Enter region (North/South/East/West): ").strip()
+                valid_transactions, _, _ = validate_and_filter(all_transactions, region=region_filter)
+                print(f"   ✓ Filtered by region: {len(valid_transactions)} records")
+            elif filter_type == '2':
+                min_amt = float(input("Enter minimum amount: "))
+                max_amt = float(input("Enter maximum amount: "))
+                valid_transactions, _, _ = validate_and_filter(all_transactions, 
+                                                            min_amount=min_amt, max_amount=max_amt)
+                print(f"   ✓ Filtered by amount: {len(valid_transactions)} records")
+        else:
+            # Apply validation only (no filters)
+            valid_transactions, invalid_count, _ = validate_and_filter(all_transactions)
+            print(f"   ✓ No filtering applied")
+        print()
+        
+        # [4/10] Validating transactions
+        print("[4/10] Validating transactions...")
+        final_valid, invalid_count, summary = validate_and_filter(valid_transactions)
+        print(f"   ✓ Valid: {len(final_valid)} | Invalid: {invalid_count}")
+        print()
+        
+        # [5/10] Analyzing sales data
+        print("[5/10] Analyzing sales data...")
+        total_rev = calculate_total_revenue(final_valid)
+        print(f"   ✓ Analysis complete - Total Revenue: ₹{total_rev:,.0f}")
+        print()
+        
+        # [6/10] Fetching product data from API
+        print("[6/10] Fetching product data from API...")
+        api_handler = ProductAPIHandler()
+        api_products = api_handler.fetch_all_products()
+        print(f"   ✓ Fetched {len(api_products)} products")
+        print()
+        
+        # [7/10] Enriching sales data
+        print("[7/10] Enriching sales data...")
+        enriched_transactions = api_handler.enrich_sales_data(final_valid)
+        api_success = sum(1 for t in enriched_transactions if t['API_Match'])
+        success_rate = round((api_success / len(enriched_transactions)) * 100, 1)
+        print(f"   ✓ Enriched {api_success}/{len(enriched_transactions)} transactions ({success_rate}%)")
+        print()
+        
+        # [8/10] Saving enriched data
+        print("[8/10] Saving enriched data...")
+        print("   ✓ Saved to: data/enriched_sales_data.txt")
+        print()
+        
+        # [9/10] Generating report
+        print("[9/10] Generating report...")
+        generate_sales_report(final_valid, enriched_transactions)
+        print("   ✓ Report saved to: output/sales_report.txt")
+        print()
+        
+        # [10/10] Process Complete!
+        print("[10/10] Process Complete!")
+        print("=" * 55)
+        print("\n📁 Files Generated:")
+        print("   • data/enriched_sales_data.txt")
+        print("   • output/sales_report.txt")
+        print("   • output/complete_analysis.csv")
+        print("   • output/product_cache.json")
+        print("\n🎉 Sales Analytics System - All Questions Complete!")
+        
+    except FileNotFoundError:
+        print("❌ Error: sales_data.txt not found in data/ folder")
+        print("Please ensure data/sales_data.txt exists.")
+    except Exception as e:
+        print(f"❌ Unexpected error: {str(e)}")
+        print("Program terminated safely.")
 
 if __name__ == "__main__":
     main()
