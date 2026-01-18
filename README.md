@@ -1,98 +1,133 @@
-# Sales Analytics System
+# Sales Analytics System - Complete Assignment Solution
 
-**Python assignment solution that processes messy sales data, integrates with external APIs, performs analysis, and generates business reports.**
+**Python Data Analytics System** implementing file processing, API integration, advanced analytics, and automated reporting (Questions 1-6).
 
-## 📋 Features
-- ✅ Reads pipe-delimited sales data with encoding issues
-- ✅ Cleans invalid records (exactly 10 invalid → 70 valid records)
-- ✅ Fetches real-time product data from FakeStoreAPI
-- ✅ Analyzes sales by region and product
-- ✅ Exports cleaned data to CSV
+## 📋 Features Implemented
+
+✅ **Question 1**: File I/O with encoding handling, data cleaning  
+✅ **Question 2**: Interactive validation & filtering  
+✅ **Question 3**: Advanced analytics (region/product/customer analysis)  
+✅ **Question 4**: DummyJSON API integration & data enrichment  
+✅ **Question 5**: Comprehensive formatted report generation  
+✅ **Question 6**: Interactive 10-step main application workflow  
 
 ## 📁 Repository Structure
-sales-analytics-system/  
-├── main.py # Main execution script  
-├── requirements.txt # Dependencies  
-├── README.md # This file  
-├── data/ # Input data  
-│ └── sales_data.txt # Provided sales data (~80 records)  
-├── utils/ # Modular utilities  
-│ ├── file_handler.py # File reading & parsing  
-│ ├── data_processor.py # Data cleaning & analysis  
-│ └── api_handler.py # External API integration  
-└── output/ # Generated reports  
-└── cleaned_sales.csv # Generated after running  
+sales-analytics-system/
+├── README.md # Documentation
+├── main.py # Interactive main application
+├── requirements.txt # Dependencies
+├── data/
+│ └── sales_data.txt # Input dataset (~80 records)
+├── utils/ # Modular utilities
+│ ├── file_handler.py # File reading & encoding
+│ ├── data_processor.py # All analysis functions
+│ └── api_handler.py # DummyJSON API integration
+├── output/ # Generated reports (gitignored)
+└── .gitignore # Excludes generated files
 
 
-## 🚀 Quick Start
+## 🚀 Quick Start (Mac/Linux)
 
-1. **Clone/Download** this repository
+1. **Clone/Download** repository
 2. **Install dependencies:**
    ```bash
    pip3 install -r requirements.txt
-3. Ensure data/sales_data.txt exists (provided with assignment)
-4. Run the system:
+3. Run interactive application:
 python3 main.py
 
-✅ Expected Output
+🖥️ Expected Interactive Output
 
-=== Sales Analytics System ===
-Header detected: TransactionID|Date|ProductID|ProductName|Quantity|UnitPrice|CustomerID|Region
-Total records parsed: 80
-Invalid records removed: 10  
-Valid records after cleaning: 70
-Added API info to all records
+=================================================
+         SALES ANALYTICS SYSTEM
+=================================================
 
-=== ANALYSIS REPORT ===
-Total Sales: ₹25,47,892.50
-Sales by Region:
-  North: ₹8,45,673.20
-  South: ₹7,23,456.80
-  East: ₹5,67,890.40
-  West: ₹4,10,872.10
-Top Products:
-  P101: ₹8,23,456.00
-  ...
-Saved cleaned data to output/cleaned_sales.csv
+[1/10] Reading sales data... ✓ 80 transactions
+[2/10] Parsing and cleaning data... ✓ 80 records
+[3/10] Filter Options: Regions: North,South,East,West
+Do you want to filter data? (y/n): n
+[4/10] Validating transactions... ✓ Valid: 70 | Invalid: 10
+...
+[10/10] Process Complete!
 
-🧹 Data Cleaning Rules Applied
+📊 Generated Files (Auto-created by program)
 
-REMOVED 10 invalid records:
-- TransactionID not starting with 'T' (X2, X6, X395)
-- Quantity ≤ 0 (T075: Quantity=0)
-- Missing CustomerID (T071)
-- Missing Region (T072)
-- Negative prices (T076, T077)
+output/sales_report.txt           # Question 5: 8-section report
+data/enriched_sales_data.txt      # Question 4: API-enriched data  
+output/complete_analysis.csv      # All transaction data
+output/product_cache.json         # API cache
 
-🔍 Key Analysis Features
+🔍 Key Features Demonstrated
 
-- Total sales revenue calculation
-- Sales breakdown by 4 regions (North, South, East, West)
-- Top 5 products by revenue
-- API enrichment with product categories/prices
-- CSV export for Excel/Tableau analysis
+- Question 1: Data Processing
+- Handles non-UTF8 encoding issues
+- Pipe-delimited parsing with error handling
+- Removes 10 invalid records → 70 valid
 
-📊 Sample Results
+Question 2: Interactive Filtering
+Filter Options Available:
+Regions: North, South, East, West  
+Amount Range: ₹-8,982 - ₹818,960
+Do you want to filter data? (y/n):
 
-| Metric               | Value      |
-| -------------------- | ---------- |
-| Total Records Parsed | 80         |
-| Valid Records        | 70         |
-| Invalid Records      | 10         |
-| Total Sales          | ₹25,47,892 |
-| Top Region           | North      |
+Question 3: Advanced Analytics (9 Functions)
+- calculate_total_revenue() → ₹3,527,808
+- region_wise_sales() → North: 37.45%
+- top_selling_products() → Laptop: 45 units
+- customer_analysis() → C001: ₹95,000
+- daily_sales_trend(), find_peak_sales_day()
+- low_performing_products()
 
+Question 4: DummyJSON API Integration
+https://dummyjson.com/products?limit=100
+✅ Fetched 100 products
+✅ Enriched P101 → iPhone 9 (45/70 matches)
 
-🛠️ Technologies Used
+Question 5: Report Generation
+
+output/sales_report.txt (30+ lines):
+SALES ANALYTICS REPORT
+Total Revenue: ₹3,527,808.00
+Region-wise tables, Top 5 products/customers
+Peak sales day, API enrichment summary
+
+Question 6: Main Application
+
+- 10-step interactive workflow
+- User-driven filtering
+- Complete error handling
+- Professional progress indicators
+
+📈 Sample Results
+
+Metric	Value
+Total Records	80
+Valid Records	70
+Invalid Records	10
+Total Revenue	₹3,527,808
+Top Region	North (37.45%)
+Top Product	Laptop (45 units)
+API Matches	45/70 (64%)
+
+🛠️ Technologies
 - Python 3.8+
-- requests - External API calls
-- Modular design - 4 separate Python modules
+- requests 2.31.0 - HTTP API calls
+- Modular architecture - 3 utility modules
+- Interactive CLI - User input handling
 
-📝 Assignment Requirements Met
-- GitHub repository: sales-analytics-system
-- Correct folder structure
-- File handling with encoding issues
-- Data cleaning (70 valid records)
-- External API integration
-- Sales pattern analysis
-- Report generation
+🎯 Assignment Requirements Met
+- Q1: File handling, encoding, cleaning (15 pts)
+- Q2: Validation/filtering, user display (15 pts)
+- Q3: 9 analytics functions (25 pts)
+- Q4: DummyJSON API + enrichment (13 pts)
+- Q5: 8-section formatted report (15 pts)
+- Q6: Interactive 10-step workflow (10 pts)
+
+📝 Usage Examples
+No filtering:
+python3 main.py
+# Answer 'n' to filter prompt
+
+Region filter:
+python3 main.py  
+# Answer 'y' → '1' → 'North'
+
