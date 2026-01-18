@@ -5,7 +5,7 @@ from utils.data_processor import (
     parse_transactions, validate_and_filter, analyze_sales,
     calculate_total_revenue, region_wise_sales, top_selling_products,
     customer_analysis, daily_sales_trend, find_peak_sales_day,
-    low_performing_products
+    low_performing_products, generate_sales_report
 )
 from utils.api_handler import ProductAPIHandler
 
@@ -70,7 +70,7 @@ def main():
     for product, qty, revenue in low_products[:3]:
         print(f"   {product}: {qty} units (₹{revenue:,.0f})")
     
-    # QUESTION 4 PART 3: NEW DummyJSON API Integration (ADDED)
+    # QUESTION 4 PART 3: DummyJSON API Integration
     print("\n" + "="*60)
     print("QUESTION 4 PART 3 - DUMMYJSON API INTEGRATION")
     print("="*60)
@@ -87,6 +87,14 @@ def main():
     print(f"   Successful API matches: {sum(1 for t in enriched_with_api if t['API_Match'])}")
     print(f"   Enriched file saved: data/enriched_sales_data.txt")
     
+    # QUESTION 5 PART 4: Report Generation (NEW)
+    print("\n" + "="*60)
+    print("QUESTION 5 PART 4 - COMPREHENSIVE REPORT GENERATION")
+    print("="*60)
+    
+    generate_sales_report(valid_transactions, enriched_with_api)
+    print("\n📄 Comprehensive report saved: output/sales_report.txt")
+    
     # Save comprehensive report
     os.makedirs('output', exist_ok=True)
     with open('output/complete_analysis.csv', 'w', newline='') as f:
@@ -101,9 +109,11 @@ def main():
     print("✅ Question 2: Validation & Business Report") 
     print("✅ Question 3: Advanced analytics")
     print("✅ Question 4: DummyJSON API integration")
+    print("✅ Question 5: Comprehensive report generation")
     print("\n📁 Files generated:")
     print("   output/complete_analysis.csv")
     print("   data/enriched_sales_data.txt")
+    print("   output/sales_report.txt") 
     print("   output/product_cache.json")
 
 if __name__ == "__main__":
